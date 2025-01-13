@@ -7,11 +7,10 @@ axios
 
 		data.forEach(item => {
 			const productCard = document.createElement('div')
-			productCard.className =
-				'bg-white rounded-lg shadow p-4 flex flex-col items-center'
+			productCard.className = 'rounded-lg flex flex-col items-start'
 
 			productCard.innerHTML = `
-                <picture class="w-full h-48">
+                <picture class="w-full">
                     <source media="(min-width: 1024px)" srcset="${
 											item.image.desktop
 										}">
@@ -25,18 +24,21 @@ axios
 				item.name
 			}" class="w-full h-full object-cover rounded-lg">
                 </picture>
-                <div class="text-center mt-4">
-                    <p class="text-sm text-gray-500">${
+									  <button class="-mt-5 mx-auto bg-white text-[#260F08] text-sm font-semibold border-[1px] border-[#AD8A85]  flex items-center justify-center px-8 py-3 rounded-full hover:bg-orange-600">
+      <img src="../assets/images/icon-add-to-cart.svg" alt="Add to Cart Icon" class="w-5 h-5 mr-2">
+      <span class="text-sm font-medium">Add to Cart</span>
+  </button>
+                <div class="flex flex-col text-start mt-4 gap-2 p-4">
+                    <p class="text-sm text-[#87635A]">${
 											item.category
 										}</p>
-                    <h2 class="text-lg font-bold">${item.name}</h2>
-                    <p class="text-xl font-semibold text-red-600 mt-2">$${item.price.toFixed(
+                    <h2 class="text-base font-semibold text-[#260F08]">${
+											item.name
+										}</h2>
+                    <p class="text-base font-semibold text-[#C73B0F]">$${item.price.toFixed(
 											2,
 										)}</p>
                 </div>
-                <button class="mt-4 bg-orange-500 text-white flex items-center px-4 py-2 rounded hover:bg-orange-600">
-                    <span class="material-icons mr-2">add_shopping_cart</span>Add to Cart
-                </button>
             `
 
 			productGrid.appendChild(productCard)
