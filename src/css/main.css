@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+	#order-modal {
+		z-index: 1000;
+	}
+
+	#order-modal.hidden {
+		display: none;
+	}
+}
