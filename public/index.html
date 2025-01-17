@@ -20,64 +20,101 @@
 		<title>Document</title>
 	</head>
 	<body class="bg-rose-50">
-		<div class="container mx-auto font-red my-8 p-4">
-			<h1 class="text-3xl font-bold mb-6">Desserts</h1>
-			<div
-				id="product-grid"
-				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-			></div>
-		</div>
-		<section id="cart" class="mt-8 p-4 bg-gray-100 rounded-lg shadow">
-			<h2 class="text-2xl font-bold mb-4">
-				Your Cart<span
-					id="cart-count"
-					class="text-lg font-semibold text-gray-600"
-					>(0)</span
-				>
-			</h2>
-			<div id="cart-items" class="space-y-4">
-				<!-- محصولات انتخاب‌شده در اینجا نمایش داده می‌شوند -->
-			</div>
-			<div
-				id="cart-total"
-				class="text-right mt-4 text-xl font-bold text-red-600"
-			>
-				Total: $0.00
-			</div>
-			<button
-				id="confirm-order"
-				class="bg-orange-500 text-white px-4 py-2 rounded mt-4 hover:bg-orange-600"
-			>
-				Confirm Order
-			</button>
-		</section>
-		<div
-			id="order-modal"
-			class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+		<section
+			class="flex flex-col xl:flex-row justify-between mx-auto font-red p-4 gap-5 items-start max-w-[90rem]"
 		>
-			<div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
-				<div class="flex items-center justify-between mb-4">
-					<h3 class="text-xl font-bold">Order Confirmed</h3>
-					<button
-						id="close-modal"
-						class="text-gray-500 hover:text-gray-700"
+			<div class="px-8 my-8">
+				<h1 class="text-3xl font-bold mb-6 lg:text-[2.5rem]">
+					Desserts
+				</h1>
+				<div
+					id="product-grid"
+					class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+				></div>
+			</div>
+			<div
+				id="cart"
+				class="mt-4 p-6 bg-white rounded-lg h-auto w-full xl:w-1/2 xl:max-w-[24rem]"
+			>
+				<h2 class="text-2xl font-bold mb-8 text-red">
+					Your Cart
+					<span id="cart-count" class="text-2xl font-bold text-red"
+						>(0)</span
 					>
-						&times;
-					</button>
-				</div>
-				<p class="text-gray-600 mb-4">We hope you enjoy your food!</p>
-				<div id="modal-cart-items" class="mb-4"></div>
-				<p id="modal-cart-total" class="font-bold text-right">
-					Order Total: $0.00
-				</p>
-				<button
-					id="start-new-order"
-					class="bg-orange-500 text-white px-4 py-2 rounded mt-4 hover:bg-orange-600"
+				</h2>
+				<div
+					id="empty-cart-message"
+					class="empty-cart flex flex-col items-center justify-center mt-8"
 				>
-					Start New Order
+					<img
+						src="../assets/images/illustration-empty-cart.svg"
+						alt="Empty Cart"
+						class="w-32 h-32 mb-4"
+					/>
+					<p class="text-center text-rose-500">
+						Your added items will appear here
+					</p>
+				</div>
+
+				<div id="cart-items" class="space-y-4"></div>
+				<div
+					id="cart-total"
+					class="my-6 flex justify-between text-rose-900"
+				></div>
+				<button
+					id="carbon-neutral"
+					class="add-to-cart mx-auto w-full my-8 bg-rose-50 text-rose-900 text-sm flex items-center justify-center p-4 rounded-lg hover:bg-rose-300 hidden"
+				>
+					<img
+						src="../assets/images/icon-carbon-neutral.svg"
+						alt="Carbon Neutral"
+						class="w-5 h-5 mr-2"
+					/>
+					<span class="text-sm font-medium"
+						>This is a
+						<span class="font-semibold"> carbon-neutral</span>
+						delivery</span
+					>
+				</button>
+				<button
+					id="confirm-order"
+					class="bg-red text-white px-6 py-4 mx-auto rounded-full text-base font-semibold hover:bg-orange-600 w-full hidden"
+				>
+					Confirm Order
 				</button>
 			</div>
-		</div>
+			<div
+				id="order-modal"
+				class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+			>
+				<div
+					class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg"
+				>
+					<div class="flex items-center justify-between mb-4">
+						<h3 class="text-xl font-bold">Order Confirmed</h3>
+						<button
+							id="close-modal"
+							class="text-gray-500 hover:text-gray-700"
+						>
+							&times;
+						</button>
+					</div>
+					<p class="text-gray-600 mb-4">
+						We hope you enjoy your food!
+					</p>
+					<div id="modal-cart-items" class="mb-4"></div>
+					<p id="modal-cart-total" class="font-bold text-right">
+						Order Total: $0.00
+					</p>
+					<button
+						id="start-new-order"
+						class="bg-orange-500 text-white px-4 py-2 rounded mt-4 hover:bg-orange-600"
+					>
+						Start New Order
+					</button>
+				</div>
+			</div>
+		</section>
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 		<script src="/src/js/index.js" type="module"></script>
 	</body>
