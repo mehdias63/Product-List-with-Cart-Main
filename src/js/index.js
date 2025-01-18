@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					item.name
 				}" class="w-full h-full object-cover rounded-lg">
                     </picture>
-                    <button class="add-to-cart -mt-5 mx-auto bg-white text-rose-900 text-sm font-semibold border-[1px] border-rose-400  flex items-center justify-center px-8 py-3 rounded-full hover:bg-rose-300">
+                    <button class="add-to-cart -mt-5 mx-auto bg-white text-rose-900 text-sm font-semibold border-[1px] border-rose-400  flex items-center justify-center rounded-full hover:bg-rose-300 w-[10rem] h-[2.8rem]">
                         <img src="../assets/images/icon-add-to-cart.svg" alt="Add to Cart Icon" class="w-5 h-5 mr-2">
                         <span class="text-sm font-medium">Add to Cart</span>
                     </button>
@@ -61,6 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				let count = 0
 
 				button.addEventListener('click', () => {
+					const productImage =
+						productCard.querySelector('picture img')
 					if (!button.classList.contains('counter-active')) {
 						button.classList.add('counter-active')
 						button.innerHTML = `
@@ -70,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <button class="increment bg-gray-300 text-gray-700 px-2 py-1 rounded">+</button>
                             </div>
                         `
-
+						productImage.classList.add('border-2', 'border-red')
 						const decrementButton = button.querySelector('.decrement')
 						const incrementButton = button.querySelector('.increment')
 						const countElement = button.querySelector('.count')
@@ -80,6 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
 						const updateCart = () => {
 							if (count === 0) {
 								delete cart[item.name]
+								productImage.classList.remove(
+									'border-2',
+									'border-red',
+								)
 							} else {
 								cart[item.name] = {
 									name: item.name,
@@ -194,6 +200,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			const deleteButton = cartItem.querySelector('.delete-item')
 			deleteButton.addEventListener('click', () => {
 				delete cart[product.name]
+				if (product.button) {
+					const productImage = product.button
+						.closest('div')
+						.querySelector('picture img')
+					productImage.classList.remove('border-2', 'border-red')
+				}
+
 				renderCart()
 			})
 
@@ -226,10 +239,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				const button = product.button
 				button.classList.add('counter-active')
 				button.innerHTML = `
-                    <div class="flex items-center space-x-2">
-                        <button class="decrement bg-gray-300 text-gray-700 px-2 py-1 rounded">-</button>
-                        <span class="count text-lg font-semibold">${product.count}</span>
-                        <button class="increment bg-gray-300 text-gray-700 px-2 py-1 rounded">+</button>
+                    <div class="flex items-center justify-between gap-2 bg-red text-white w-[10rem] h-[2.8rem] rounded-full">
+                        <button class="decrement px-3 py-1 rounded">
+												<img src="../assets/images/decrement.svg" alt="decrement Icon" class="w-5 h-5"></button>
+                        <span class="count text-sm font-semibold">${product.count}</span>
+                        <button class="increment px-3 py-1 rounded"><img src="../assets/images/increment.svg" alt="increment Icon" class="w-5 h-5 "></button>
                     </div>
                 `
 
@@ -267,6 +281,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	startNewOrderButton.addEventListener('click', () => {
 		cart = {}
+		document.querySelectorAll('.counter-active').forEach(button => {
+			const productImage = button
+				.closest('div')
+				.querySelector('picture img')
+			if (productImage) {
+				productImage.classList.remove('border-2', 'border-red')
+			}
+		})
+
 		renderCart()
 		orderModal.classList.add('hidden')
 	})
