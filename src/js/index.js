@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const closeModalButton = document.getElementById('close-modal')
 	const startNewOrderButton =
 		document.getElementById('start-new-order')
-
 	let cart = {}
 
 	axios
@@ -171,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
             <div class="flex items-center">
-                <button class="delete-item text-red-600 hover:text-red-800">
+                <button class="delete-item">
                     <img src="../assets/images/icon-remove-item2.svg" alt="Remove" class="w-5 h-5">
                 </button>
             </div>
@@ -179,19 +178,22 @@ document.addEventListener('DOMContentLoaded', () => {
 			cartItems.appendChild(cartItem)
 
 			const modalItem = document.createElement('div')
-			modalItem.className = 'flex justify-between items-center mb-2'
+			modalItem.className =
+				'flex justify-between items-center pb-2 border-b my-2'
 
 			modalItem.innerHTML = `
+			<div class="flex my-2">
             <img src="${product.image}" alt="${
 				product.name
 			}" class="w-12 h-12 rounded mr-2">
             <div>
                 <h3 class="font-semibold">${product.name}</h3>
-                <p class="text-sm text-gray-500">$${product.price.toFixed(
-									2,
-								)} x ${product.count}</p>
+                <p class="text-sm text-rose-500"><span class="mr-4 text-red font-semibold"> x ${
+									product.count
+								}</span>  @$${product.price.toFixed(2)}</p>
+								</div>
             </div>
-            <p class="font-bold">$${(
+            <p class="font-bold text-rose-900">$${(
 							product.price * product.count
 						).toFixed(2)}</p>
         `
@@ -218,7 +220,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			2,
 		)}</span>`
 		cartCount.textContent = `(${totalItems})`
-		modalCartTotal.textContent = `Order Total: $${total.toFixed(2)}`
+		modalCartTotal.innerHTML = `<div class="flex justify-between items-center"><span class="text-sm text-rose-900">Order Total</span> <span class="text-2xl font-bold">$${total.toFixed(
+			2,
+		)}</span></div>`
 
 		resetButtons()
 	}
