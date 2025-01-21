@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const orderModal = document.getElementById('order-modal')
 	const modalCartItems = document.getElementById('modal-cart-items')
 	const modalCartTotal = document.getElementById('modal-cart-total')
-	const closeModalButton = document.getElementById('close-modal')
 	const startNewOrderButton =
 		document.getElementById('start-new-order')
 	let cart = {}
@@ -277,10 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	confirmOrderButton.addEventListener('click', () => {
 		orderModal.classList.remove('hidden')
-	})
-
-	closeModalButton.addEventListener('click', () => {
-		orderModal.classList.add('hidden')
 	})
 
 	startNewOrderButton.addEventListener('click', () => {
